@@ -40,11 +40,10 @@ public class Cadastrar extends HttpServlet {
         
         try {
                        
-            String id = request.getParameter("id");
             Class.forName("com.mysql.jdbc.Driver");
             Connection c =  DriverManager.getConnection("jdbc:mysql://localhost/batepapo","batepapo","batepapo");
             PreparedStatement  p =  c.prepareStatement("delete from usuario where id_usuario = ? ");
-            p.setInt(1,  Integer.parseInt(id));
+            p.setInt(1,  Integer.parseInt(request.getParameter("id")));
             p.execute() ;
             response.getWriter().print("deletado com sucesso");
         } catch (SQLException ex) {
@@ -53,7 +52,7 @@ public class Cadastrar extends HttpServlet {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Cadastrar.class.getName()).log(Level.SEVERE, null, ex);
         }
-        response.sendRedirect("index.jsp");
+        //response.sendRedirect("index.jsp");
     }
 
     /**

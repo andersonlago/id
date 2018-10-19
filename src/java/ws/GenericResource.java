@@ -30,7 +30,7 @@ import pojo.Usuario;
  *
  * @author anderson
  */
-@Path("generic")
+@Path("usuario")
 public class GenericResource {
 
     @Context
@@ -52,7 +52,7 @@ public class GenericResource {
      
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection c =  DriverManager.getConnection("jdbc:mysql://127.0.0.1/batepapo","batepapo","batepapo");
+            Connection c =  DriverManager.getConnection("jdbc:mysql://localhost/batepapo","batepapo","batepapo");
             PreparedStatement  p =  c.prepareStatement("select * from usuario");
             ResultSet r =  p.executeQuery() ;
             
@@ -91,7 +91,7 @@ public class GenericResource {
 	public Usuario getUserById(@PathParam("id") String id) {
 	      try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection c =  DriverManager.getConnection("jdbc:mysql://127.0.0.1/batepapo","batepapo","batepapo");
+            Connection c =  DriverManager.getConnection("jdbc:mysql://localhost/batepapo","batepapo","batepapo");
             PreparedStatement  p =  c.prepareStatement("select * from usuario where id_usuario= ? ");
             p.setInt(1,  Integer.parseInt(id) );
             ResultSet r =  p.executeQuery() ;
@@ -121,7 +121,7 @@ public class GenericResource {
 	public ArrayList<Usuario> getUserByLogin(@PathParam("login") String login) {
 	      try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection c =  DriverManager.getConnection("jdbc:mysql://127.0.0.1/batepapo","batepapo","batepapo");
+            Connection c =  DriverManager.getConnection("jdbc:mysql://localhost/batepapo","batepapo","batepapo");
             PreparedStatement  p =  c.prepareStatement("select * from usuario where login like ? ");
             p.setString(1,  '%'+ login + '%' );
             ResultSet r =  p.executeQuery() ;
